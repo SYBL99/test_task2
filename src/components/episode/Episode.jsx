@@ -3,7 +3,7 @@ import React from "react";
 function Episode ({id, name, air_date, episode}) {
     
     return (
-        <div>{episode}. {name}, {air_date}</div>
+        <div className="my">{episode}. {name}, {air_date}</div>
     )
 }
 

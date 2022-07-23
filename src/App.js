@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GetInfo from "./API/PostService";
 import Episode from "./components/episode/Episode.jsx";
-
+import "./App.css"
 function App () {
 
     const [episode, setEpisode] = useState([]);
