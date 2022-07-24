@@ -1,0 +1,27 @@
+@import url(/src/css/null_style.css);
+html {
+  font-size: 16px;
+}
+
+body {
+  width: 100%;
+}
+
+header {
+  color: red;
+  height: 50px;
+  width: 100%;
+}
+
+main {
+  font-size: 1.6rem;
+}
+
+.episode {
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 10px;
+  max-width: 1000px;
+  margin: 0 auto 10px auto;
+}
+/*# sourceMappingURL=App.css.map */
