@@ -6,6 +6,8 @@ import EpisodeList from "../episodesList/EpisodeList.jsx";
 function EpisodeSeason() {
     const [episodes, setEpisodes] = useState([])
     const [episodesBySeason, setEpisodesBySeason] = useState([])
+    const [showForScroll, setShowForScroll] = useState([])
+
     async function getAllEpisodes() {
         const API = new GetInfo;
         const response = await API.getEpisodes();
@@ -14,20 +16,18 @@ function EpisodeSeason() {
 
     function infiniteScroll() {
         window.addEventListener("scroll", function () {
-
-            var block = document.getElementById('infinite-scroll');
-
-            var contentHeight = block.offsetHeight;      // 1) высота блока контента вместе с границами
-            var yOffset = window.pageYOffset;      // 2) текущее положение скролбара
-            var window_height = window.innerHeight;      // 3) высота внутренней области окна документа
-            var y = yOffset + window_height;
-
+            const block = document.getElementById('infinite-scroll');
+            const contentHeight = block.offsetHeight; 
+            const yOffset = window.pageYOffset;
+            const window_height = window.innerHeight;
+            const y = yOffset + window_height;
             // если пользователь достиг конца
-            if (y >= contentHeight) {
-                
+            if (y >= contentHeight && showForScroll.length<5) {
+                setShowForScroll([...showForScroll, episodesBySeason[showForScroll.length]])
             }
         });
     }
+
     function filterBySeason() {
         let takeAll = []
         for (let i = 1; i < 6; i++) {
@@ -35,6 +35,9 @@ function EpisodeSeason() {
             takeAll = [...takeAll, buff]
         }
         setEpisodesBySeason(takeAll)
+        console.log("take all[0]", takeAll)
+        console.log("show", showForScroll)
+        setShowForScroll([takeAll[0], takeAll[1]])
     }
 
     useEffect(() => { getAllEpisodes() }, [])
@@ -42,7 +45,7 @@ function EpisodeSeason() {
     infiniteScroll()
     return (
         <>  
-            {episodesBySeason.map((item, index) => <EpisodeList episodes={item} season={index + 1} key={index}/>)}
+            {showForScroll.map((item, index) => <EpisodeList episodes={item} season={index + 1} key={index}/>)}
         </>
 
     )
