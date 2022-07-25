@@ -9,12 +9,26 @@ function EpisodeSeason() {
     const [episodes, setEpisodes] = useState([])
     const [searchQuery, setSearchQuery, setInputArr, searchedArr] = useSearch()
     const [episodesBySeason, setEpisodesBySeason] = useState([])
+    const [sort, setSort] = useState('')
 
     async function getAllEpisodes() {
         const API = new GetInfo;
         const response = await API.getEpisodes();
         setInputArr(response)
         setEpisodes(response)
+    }
+
+    function sortedBy() {
+        try {
+            if (sort === 'id') {
+                setInputArr([...episodes].sort((a, b) => a.id - b.id))
+            }
+            if (sort !== '' && sort !== 'id') {
+                setInputArr([...episodes].sort((a, b) => a[sort].localeCompare(b[sort])))
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     function splitBySeason() {
@@ -25,12 +39,20 @@ function EpisodeSeason() {
         }
         setEpisodesBySeason(takeAll)
     }
-
+    useEffect(() => { sortedBy() }, [sort])
     useEffect(() => { getAllEpisodes() }, [])
     useEffect(() => { splitBySeason() }, [searchedArr])
     return (
-        <>  <div><input className="episode__search" value={searchQuery} placeholder="поиск" onChange={e => {setSearchQuery(e.target.value)}}></input> </div>
-            {episodesBySeason.map((item, index) => <EpisodeList episodes={item} season={index + 1} key={index}/>)}
+        <>  
+            <div>
+                <input className="episode__search" value={searchQuery} placeholder="поиск" onChange={e => {setSearchQuery(e.target.value)}}></input>
+                <select defaultValue='default' onChange={(e) => setSort(e.target.value)}>
+                    <option disabled value='default'> Сортировка</option>
+                    <option value='name'>По имени</option>
+                    <option value='id'>air_date</option>
+                </select>
+                </div>
+            {episodesBySeason.map((item, index) => <EpisodeList setEpisodesBySeason={setEpisodesBySeason} episodes={item} season={index + 1} key={index}/>)}
         </>
 
     )
