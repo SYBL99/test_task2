@@ -44,9 +44,9 @@ function EpisodeSeason() {
     useEffect(() => { getAllEpisodes() }, [])
     useEffect(() => { splitBySeason() }, [searchedArr])
     return (
-        <>  
-            <SearchAndSort searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSort={setSort}/>
-            {episodesBySeason.map((item, index) => <EpisodeList setEpisodesBySeason={setEpisodesBySeason} episodes={item} season={index + 1} key={index}/>)}
+        <>
+            <SearchAndSort searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSort={setSort} />
+            {episodesBySeason.map((item, index) => <EpisodeList setEpisodesBySeason={setEpisodesBySeason} episodes={item} season={index + 1} key={index} />)}
         </>
 
     )

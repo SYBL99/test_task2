@@ -5,7 +5,8 @@ function Layout () {
     return (
         <>
             <header>
-                Заголовок
+                <NavLink to="/"> Home </NavLink>
+                <NavLink to="/about"> About </NavLink>
             </header>
 
             <main id="infinite-scroll">

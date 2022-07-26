@@ -6,10 +6,13 @@ module.exports = {
     entry: './src/index.js',
 
     output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index_bundle.js',
+        publicPath: '/'
     },
-
+    devServer: {
+        historyApiFallback: true,
+    },
     plugins: [
         new HTMLWebpackPlugin({
             template: './src/index.html'
