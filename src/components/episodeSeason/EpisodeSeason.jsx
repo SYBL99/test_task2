@@ -4,7 +4,7 @@ import GetInfo from "../../API/PostService.js";
 import EpisodeList from "../episodesList/EpisodeList.jsx";
 import useInfiniteScroll from "../hooks/UseInfifnteScroll.jsx";
 import useSearch from "../hooks/UseSearch.js";
-import SearchAndSort from "../SeacrAndSort/SearchAndSort.jsx"
+import SearchAndSort from "../searchAndSort/SearchAndSort.jsx.js"
 
 function EpisodeSeason() {
     const [episodes, setEpisodes] = useState([])

@@ -14,9 +14,8 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -27,6 +26,42 @@ header {
 
 main {
   font-size: 1.4rem;
+}
+
+.main__sort {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px;
+}
+
+.main__sort-searcher {
+  font-size: 1.5rem;
+  border: 1px solid black;
+}
+
+.character__card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid blue;
+  width: 90%;
+  margin: 0 auto 15px;
+}
+
+.character__card-img {
+  display: block;
+  height: 20vh;
+  width: 20vw;
+}
+
+.character__card-sideblock {
+  width: 100%;
 }
 
 .episode {

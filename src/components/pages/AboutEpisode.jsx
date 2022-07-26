@@ -1,21 +1,46 @@
 import React, { useState, useEffect } from "react";
-import Episode from "../episode/Episode.jsx";
 import GetInfo from "../../API/PostService.js";
-import EpisodeList from "../episodesList/EpisodeList.jsx";
-import useInfiniteScroll from "../hooks/UseInfifnteScroll.jsx";
-import useSearch from "../hooks/UseSearch.js";
-import SearchAndSort from "../SeacrAndSort/SearchAndSort.jsx"
+
+import { useParams } from "react-router-dom";
+import CharaterCard from "../characterCard/CharacterCard.jsx";
 
 function AboutEpisode() {
+    const [charactersInfo, setCharactersInfo] = useState([])
+    const {id} = useParams();
 
-    async function geEpisode() {
-        const API = GetInfo;
-        const response = await API.getEpisodes();
-        console.log(response)
+    function parseId(string) {
+        let id = ''
+        for (let i = string.length - 1; i > 0; i--) {
+            if (string[i] === '/') {
+                return id
+            } else {
+                id = string[i] + id
+            }
+        }
+        return ''
     }
 
+    async function getAboutEpisode () {
+        const API = new GetInfo
+        const response = await API.getAboutEpisode(id)
+        const idArr = response.characters.map(parseId)
+        getCharacters(idArr)
+    }
+
+    async function getCharacters(idArr) {
+        const API = new GetInfo
+        const response = await API.getAboutCharacters(idArr)
+        setCharactersInfo(response)
+        console.log('charac',response)
+    }
+
+    useEffect(() => { getAboutEpisode() },[])
     return (
-        <div>Здесь о</div>
+        <>
+            <div>Здесь о {id}</div>
+            {charactersInfo.map(element => <CharaterCard key={element.id} {...element} />)} 
+        </>
+
     )
 }
 
