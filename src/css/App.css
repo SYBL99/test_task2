@@ -42,6 +42,7 @@ main {
   display: -ms-flexbox;
   display: flex;
   max-width: 1000px;
+  width: 90%;
   padding: 0px 5px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -54,12 +55,12 @@ main {
 
 .main__sort-searcher {
   font-size: 1.5rem;
-  width: 20%;
+  width: 30%;
   border: 1px solid black;
 }
 
 .main__sort-selector {
-  width: 20%;
+  width: 30%;
   display: block;
   font-size: 1.5rem;
   height: 100%;
@@ -97,6 +98,7 @@ main {
   padding: 5px;
   border-radius: 10px;
   max-width: 1000px;
+  width: 90%;
   margin: 0 auto 10px auto;
 }
 

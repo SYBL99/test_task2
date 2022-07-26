@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 function useInfiniteScroll (arrayForScroll, tag) {
     const [showForScroll, setShowForScroll] = useState([])
     let firstCall = true
-    infiniteScroll()
+
+    useEffect(()=>{infiniteScroll()},[])
+    useEffect(() => { console.log(showForScroll) }, [showForScroll])
     function MyScroll() {
             const block = document.getElementById(tag);
             const contentHeight = block.offsetHeight;
@@ -14,9 +16,10 @@ function useInfiniteScroll (arrayForScroll, tag) {
                 setShowForScroll([...showForScroll, arrayForScroll[showForScroll.length]])
         }
     }
+
     function infiniteScroll() {
         console.log('length',showForScroll.length)
-        if ((showForScroll.length < 5) && firstCall) {
+        if (showForScroll.length < 5 && firstCall) {
             firstCall = false
             console.log('добавил скролл')
             console.log(firstCall)
@@ -24,10 +27,10 @@ function useInfiniteScroll (arrayForScroll, tag) {
         }
         if (showForScroll.length == 6)
         {   console.log('кил')
-            console.log(window.getEventListeners());
             window.removeEventListener('scroll', MyScroll)}
     }
     return(
+
         [showForScroll, setShowForScroll]
     )
 }

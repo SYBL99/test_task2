@@ -12,9 +12,9 @@ function App () {
     return (
         <>
             <Routes>
-                <Route path='/' element={<Layout/>}>
-                    <Route index element={<Home/>}/>
-                    <Route path="/about/:id" element={<AboutEpisode/>}/>
+                <Route path='/' element={<Layout />}>
+                    <Route index element={<Home />}/>
+                    <Route path="/about/:id" element={<AboutEpisode />}/>
                     <Route path="/locations" element={<Locations />}/>
                     <Route path="/locations/:id" element={<AboutLocation />} />
                     <Route path="*" element={<NotFound />}/>

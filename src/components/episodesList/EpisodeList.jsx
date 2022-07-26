@@ -2,7 +2,6 @@ import React, {useState, useEffect, useMemo} from "react";
 import Episode from "../episode/Episode.jsx";
 
 function EpisodeList({episodes, season}) {
-    
     return(
         <>
             {episodes.length === 0 ? <></> : <div className="episode__season">Сезон {season}</div>}

@@ -4,7 +4,7 @@ function useSearch () {
     const [input, setInput] = useState([]);
     const [searchQuery, setSearchQuery] = useState('')
     const [searched, setSearched] = useState([])
-    useEffect(() => {setSearched(input.filter(elem => elem.name.toLowerCase().includes(searchQuery.toLowerCase())))},[input, searchQuery])
+    useEffect(() => {setSearched(input.filter(elem => elem.name.toLowerCase().includes(searchQuery.toLowerCase()))); console.log(searched)},[input, searchQuery])
     return [searchQuery, setSearchQuery, setInput, searched]
 }
 

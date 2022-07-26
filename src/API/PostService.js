@@ -33,6 +33,17 @@ class GetInfo {
             console.log(error)
         }
     }
+    async getCharactersByidArr(idArr) {
+        try {
+            const id = idArr.join(',')
+            const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
+            const data = await response.json()
+            console.log('dataAll', data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
     async getAllLocations() {
         let allLocations = []
         try {
@@ -45,6 +56,16 @@ class GetInfo {
                 allLocations = [...allLocations, ...data.results]
             }
             return allLocations
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async getResidentsByLocation(id) {
+        try {
+            let response = await fetch(`https://rickandmortyapi.com/api/location/${id}`)
+            let data = await response.json()
+            console.log(data.residents)
+            return data
         } catch (error) {
             console.log(error)
         }
