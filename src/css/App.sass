@@ -1,14 +1,20 @@
 @import url(/src/css/null_style.css)
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+$header_height: 50px
+$footer_height: 50px
+$main_height: calc(100vh - #{$footer_height})
 html
     font-size: 16px
 
 body
     width: 100%
+    font-family: 'Poppins', sans-serif
 
 header
-    color: red
-    height: 50px
+    background-color: blue
+    position: fixed
+    height: $header_height
     font-size: 1.5rem
     display: flex
     justify-content: space-around
@@ -16,19 +22,37 @@ header
     padding: 10px
     border-bottom: 1px solid black
     width: 100%
+    a
+        color: white
 
 main
+    padding-top: calc(#{$header_height} + 10px) 
+    min-height: $main_height
     font-size: 1.4rem
 
 .main__sort
     display: flex
-    justify-content: space-around
+    max-width: 1000px
+    padding: 0px 5px
+    justify-content: space-between
+    margin:  0 auto
     align-items: center
-    padding: 5px
     &-searcher
         font-size: 1.5rem
+        width: 20%
         border: 1px solid black
-        
+    &-selector
+        width: 20%
+        display: block
+        font-size: 1.5rem
+        height: 100%
+
+.title
+    text-align: center
+    font-size: 1.8rem
+    font-weight: bold
+    margin-bottom: 15px
+
 .character__card
     display: flex
     border: 1px solid blue
@@ -40,8 +64,10 @@ main
         width: 20vw
     &-sideblock
         width: 100%
+
 .episode
     border: 2px solid black
+    cursor: pointer
     padding: 5px
     border-radius: 10px
     max-width: 1000px
@@ -51,3 +77,6 @@ main
     display: block
     border: 1px solid black
 
+.episode__season
+    text-align: center
+    margin-bottom: 10px

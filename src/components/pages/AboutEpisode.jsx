@@ -3,9 +3,11 @@ import GetInfo from "../../API/PostService.js";
 
 import { useParams } from "react-router-dom";
 import CharaterCard from "../characterCard/CharacterCard.jsx";
+import EpisodeInfo from "../episodeInfo/EpisodeInfo.jsx";
 
 function AboutEpisode() {
     const [charactersInfo, setCharactersInfo] = useState([])
+    const [episodeInfo, setEpisodeInfo] = useState({})
     const {id} = useParams();
 
     function parseId(string) {
@@ -24,6 +26,8 @@ function AboutEpisode() {
         const API = new GetInfo
         const response = await API.getAboutEpisode(id)
         const idArr = response.characters.map(parseId)
+        console.log(response)
+        setEpisodeInfo(response)
         getCharacters(idArr)
     }
 
@@ -36,8 +40,9 @@ function AboutEpisode() {
 
     useEffect(() => { getAboutEpisode() },[])
     return (
-        <>
-            <div>Здесь о {id}</div>
+        <>  <div>Информация об эпизоде</div>
+            <EpisodeInfo {...episodeInfo}/>
+            <div className="title">Персоонажи из эпизода</div>
             {charactersInfo.map(element => <CharaterCard key={element.id} {...element} />)} 
         </>
 

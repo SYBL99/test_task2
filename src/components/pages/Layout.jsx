@@ -6,7 +6,7 @@ function Layout () {
         <>
             <header>
                 <NavLink to="/"> Home </NavLink>
-                <NavLink to="/about"> About </NavLink>
+                <NavLink to="/locations"> Locations </NavLink>
             </header>
 
             <main id="infinite-scroll">

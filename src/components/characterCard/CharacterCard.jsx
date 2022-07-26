@@ -1,11 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 function CharaterCard({id, gender, image, name, status, species, location}) {
-
-    function handleClick() {
-
-    }
 
     return (
         <div className="character__card">

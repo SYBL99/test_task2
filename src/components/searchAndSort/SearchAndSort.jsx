@@ -1,7 +1,6 @@
 import React from "react";
 
 function searchAndSort ({searchQuery, setSearchQuery, setSort}) {
-    console.log('алло')
     return(
         <div className="main__sort">
             <input className="main__sort-searcher" value={searchQuery} placeholder="Поиск" onChange={e => { setSearchQuery(e.target.value) }}></input>
