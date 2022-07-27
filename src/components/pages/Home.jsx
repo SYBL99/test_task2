@@ -35,10 +35,8 @@ function EpisodeSeason() {
             const buff = searchedArr.filter(element => { if (element.episode[2] == i) return true })
             takeAll = [...takeAll, buff]
         }
-        if (takeAll[0].length != 0) {
             setEpisodesBySeason(takeAll)
             setArr(takeAll)
-        }
     }
 
     useEffect(() => {sortBy() }, [sort])
