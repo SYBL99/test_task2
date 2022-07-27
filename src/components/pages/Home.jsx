@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import Episode from "../episode/Episode.jsx";
+import React, { useState, useEffect, useContext } from "react";
 import GetInfo from "../../API/PostService.js";
 import EpisodeList from "../episodesList/EpisodeList.jsx";
-import useInfiniteScroll from "../hooks/UseInfifnteScroll.jsx";
 import useSearch from "../hooks/UseSearch.js";
 import SearchAndSort from "../searchAndSort/SearchAndSort.jsx"
+import UserContext from "../../context/UserContext";
 
 function EpisodeSeason() {
+
     const [episodes, setEpisodes] = useState([])
     const [searchQuery, setSearchQuery, setInputArr, searchedArr] = useSearch()
     const [episodesBySeason, setEpisodesBySeason] = useState([])
     const [sort, setSort] = useState('')
-    const [showForScroll, setShowForScroll] = useInfiniteScroll(searchedArr,'infinite-scroll')
     const API = new GetInfo
+    const {arr, setArr} = useContext(UserContext)
 
     async function getAllEpisodes() {
         const response = await API.getEpisodes();
@@ -20,7 +20,7 @@ function EpisodeSeason() {
         setEpisodes(response)
     }
 
-    function sortedBy() {
+    function sortBy() {
         try {
             if (sort === 'id') {
                 setInputArr([...episodes].sort((a, b) => a.id - b.id))
@@ -39,23 +39,20 @@ function EpisodeSeason() {
             const buff = searchedArr.filter(element => { if (element.episode[2] == i) return true })
             takeAll = [...takeAll, buff]
         }
-        console.log(takeAll)
         if (takeAll[0].length != 0) {
-            setShowForScroll([takeAll[0], takeAll[1]])
             setEpisodesBySeason(takeAll)
+            setArr(takeAll)
         }
-
-
     }
-    useEffect(() => { sortedBy() }, [sort])
-    useEffect(() => { console.log('scr',showForScroll) }, [showForScroll])
-    useEffect(() => { getAllEpisodes(); }, [])
-    useEffect(() => {setShowForScroll(searchedArr); splitBySeason();}, [searchedArr])
+
+    useEffect(() => {sortBy() }, [sort])
+    useEffect(() => {getAllEpisodes()}, [])
+    useEffect(() => {splitBySeason()}, [searchedArr])
+
     return (
         <>
-            <button onClick={() => { console.log('searchedArr', searchedArr); console.log('showForScroll', showForScroll) }}>пЛог</button>
             <SearchAndSort searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSort={setSort} />
-            {showForScroll.map((item, index) => <EpisodeList setEpisodesBySeason={setEpisodesBySeason} episodes={item} season={index + 1} key={index} />)}
+            {arr.map((item, index) => <EpisodeList season={index + 1} key={index} />)}
         </>
 
     )

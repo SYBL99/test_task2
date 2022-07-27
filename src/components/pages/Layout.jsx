@@ -9,7 +9,7 @@ function Layout () {
                 <NavLink to="/locations"> Locations </NavLink>
             </header>
 
-            <main id="infinite-scroll">
+            <main>
                 <Outlet />
             </main>
 
