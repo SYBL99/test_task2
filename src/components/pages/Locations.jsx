@@ -8,13 +8,13 @@ function Locations() {
         const API = new GetInfo
         const response = await API.getAllLocations()
         setLocations(response)
-        console.log(response)
     }
     useEffect(()=>{getAllLocation()},[])
     return (
         <>
+            <div className="title">Локации</div>
             {locations.map(element => <Location key={element.id} {...element} />)}
-            <div>Локации</div>
+
         </>
 
     )

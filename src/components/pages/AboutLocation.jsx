@@ -6,12 +6,11 @@ import { useParams } from "react-router-dom";
 
 function AboutLocation() {
     const [charactersInfo, setCharactersInfo] = useState([])
+    const { id } = useParams();
     const API = new GetInfo
 
     async function getCharacters(idArr) {
-        console.log(idArr)
         let response = await API.getCharactersByidArr(idArr)
-        console.log('responce',response)
         if (typeof response === 'object' && !Array.isArray(response) && !Array.isArray(response.results)) {
             response = [response]
         }
@@ -24,7 +23,7 @@ function AboutLocation() {
         getCharacters(idArr)
     }
 
-    const {id} = useParams();
+
 
     useEffect(()=>{getAllResidents(id)},[])
     return (

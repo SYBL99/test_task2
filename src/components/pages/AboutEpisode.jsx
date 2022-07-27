@@ -27,7 +27,6 @@ function AboutEpisode() {
     
     return (
         <>  
-            <div>Информация об эпизоде</div>
             <EpisodeInfo {...episodeInfo}/>
             <div className="title">Персоонажи из эпизода</div>
             {charactersInfo.map(element => <CharaterCard key={element.id} {...element} />)} 

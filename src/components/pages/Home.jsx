@@ -21,16 +21,12 @@ function EpisodeSeason() {
     }
 
     function sortBy() {
-        try {
-            if (sort === 'id') {
-                setInputArr([...episodes].sort((a, b) => a.id - b.id))
-            }
-            if (sort !== '' && sort !== 'id') {
-                setInputArr([...episodes].sort((a, b) => a[sort].localeCompare(b[sort])))
-            }
-        } catch (error) {
-            console.log(error)
+        if (sort === 'id') {
+            setInputArr([...episodes].sort((a, b) => a.id - b.id))
         }
+        if (sort !== '' && sort !== 'id') {
+            setInputArr([...episodes].sort((a, b) => a[sort].localeCompare(b[sort])))
+        } 
     }
 
     function splitBySeason() {

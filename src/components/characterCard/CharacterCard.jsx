@@ -1,6 +1,6 @@
 import React from "react";
 
-function CharaterCard({id, gender, image, name, status, species, location}) {
+function CharaterCard({gender, image, name, status, species, location}) {
 
     return (
         <div className="character__card">

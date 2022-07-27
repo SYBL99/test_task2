@@ -10,7 +10,7 @@ class GetInfo {
             }
         return allEpisodes
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
     async getAboutEpisode(episode) {
@@ -19,7 +19,7 @@ class GetInfo {
             const data = await response.json()
             return data
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
     async getAboutCharacters(idArr) {
@@ -30,7 +30,7 @@ class GetInfo {
             const currentCharacters = data
             return currentCharacters
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
     async getCharactersByidArr(idArr) {
@@ -38,10 +38,9 @@ class GetInfo {
             const id = idArr.join(',')
             const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
             const data = await response.json()
-            console.log('dataAll', data)
             return data
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
     async getAllLocations() {
@@ -57,17 +56,16 @@ class GetInfo {
             }
             return allLocations
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
     async getResidentsByLocation(id) {
         try {
             let response = await fetch(`https://rickandmortyapi.com/api/location/${id}`)
             let data = await response.json()
-            console.log(data.residents)
             return data
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 }
